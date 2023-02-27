@@ -1,0 +1,129 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Assets Service - OpenAPI 3.0",
+    "description": "Secure Asset Service swagger",
+    "contact": {
+      "email": "carl@projectronin.com"
+    },
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "asset",
+      "description": "Related to creating and retrieving assets"
+    }
+  ],
+  "paths": {
+    "/asset": {
+      "post": {
+        "summary": "Upload an Asset",
+        "description": "Upload an Asset",
+        "operationId": "uploadAsset",
+        "tags": [
+          "asset"
+        ],
+        "requestBody": {
+          "description": "Upload an Asset",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "schemas/asset.json#/components/schemas/Asset"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "schemas/asset.json#/components/schemas/AssetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "seki": []
+          }
+        ]
+      }
+    },
+    "/asset/{path}": {
+      "get": {
+        "summary": "Download Asset",
+        "description": "Download Asset",
+        "operationId": "downloadAsset",
+        "tags": [
+          "asset"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The path of the asset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "seki": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "seki": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {}
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "openapi": "3.0.0",
+  "paths": {},
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "components": {
+    "schemas": {
+      "Asset": {
+        "title": "Asset",
+        "description": "An asset",
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceAttribute": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "image/jpeg",
+              "image/png"
+            ]
+          },
+          "data": {
+            "type": "string",
+            "format": "base64"
+          }
+        },
+        "required": [
+          "tenantId",
+          "resourceType",
+          "resourceId",
+          "resourceAttribute",
+          "contentType"
+        ]
+      },
+      "AssetResponse": {
+        "title": "Asset Response",
+        "description": "An asset response",
+        "type": "object",
+        "properties": {
+          "asset": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "asset",
+          "path"
+        ]
+      }
+    }
+  }
+}
