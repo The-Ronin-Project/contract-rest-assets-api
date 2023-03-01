@@ -1,5 +1,4 @@
-rootProject.name = "ronin-contract-rest-template"
-
+rootProject.name = "contract-rest-assets"
 
 pluginManagement {
     repositories {

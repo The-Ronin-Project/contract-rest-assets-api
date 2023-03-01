@@ -1,0 +1,114 @@
+{
+  "openapi": "3.0.0",
+  "paths": {},
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "components": {
+    "schemas": {
+      "Asset": {
+        "title": "Asset",
+        "description": "An asset",
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceAttribute": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "image/jpeg",
+              "image/png",
+              "application/pdf"
+            ]
+          },
+          "data": {
+            "type": "string",
+            "format": "byte"
+          }
+        },
+        "required": [
+          "tenantId",
+          "resourceType",
+          "resourceId",
+          "resourceAttribute",
+          "contentType"
+        ]
+      },
+      "AssetPostResponse": {
+        "title": "Asset Upload Response",
+        "description": "An asset upload response",
+        "type": "object",
+        "properties": {
+          "asset": {
+            "type": "string"
+          },
+          "asset_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "asset",
+          "asset_path"
+        ]
+      },
+      "AssetGetResponse": {
+        "title": "Asset Response",
+        "description": "An asset response",
+        "type": "object",
+        "properties": {
+          "asset": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceAttribute": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "image/jpeg",
+              "image/png",
+              "application/pdf"
+            ]
+          },
+          "asset_path": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "byte"
+          }
+        },
+        "required": [
+          "asset",
+          "asset_path"
+        ]
+      }
+    }
+  }
+}
