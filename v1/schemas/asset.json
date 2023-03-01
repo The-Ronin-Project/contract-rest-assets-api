@@ -31,12 +31,13 @@
             "type": "string",
             "enum": [
               "image/jpeg",
-              "image/png"
+              "image/png",
+              "application/pdf"
             ]
           },
           "data": {
             "type": "string",
-            "format": "base64"
+            "format": "byte"
           }
         },
         "required": [
@@ -47,7 +48,24 @@
           "contentType"
         ]
       },
-      "AssetResponse": {
+      "AssetPostResponse": {
+        "title": "Asset Upload Response",
+        "description": "An asset upload response",
+        "type": "object",
+        "properties": {
+          "asset": {
+            "type": "string"
+          },
+          "asset_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "asset",
+          "asset_path"
+        ]
+      },
+      "AssetGetResponse": {
         "title": "Asset Response",
         "description": "An asset response",
         "type": "object",
@@ -55,13 +73,40 @@
           "asset": {
             "type": "string"
           },
-          "path": {
+          "tenantId": {
             "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceAttribute": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "image/jpeg",
+              "image/png",
+              "application/pdf"
+            ]
+          },
+          "asset_path": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "byte"
           }
         },
         "required": [
           "asset",
-          "path"
+          "asset_path"
         ]
       }
     }

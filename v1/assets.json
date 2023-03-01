@@ -20,7 +20,7 @@
     }
   ],
   "paths": {
-    "/asset": {
+    "/assets": {
       "post": {
         "summary": "Upload an Asset",
         "description": "Upload an Asset",
@@ -45,7 +45,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "schemas/asset.json#/components/schemas/AssetResponse"
+                  "$ref": "schemas/asset.json#/components/schemas/AssetPostResponse"
                 }
               }
             }
@@ -67,33 +67,41 @@
         ]
       }
     },
-    "/asset/{path}": {
+    "/assets/{id}": {
       "get": {
-        "summary": "Download Asset",
-        "description": "Download Asset",
-        "operationId": "downloadAsset",
+        "summary": "Get Asset",
+        "description": "Get Asset",
+        "operationId": "getAsset",
         "tags": [
           "asset"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "path",
+            "name": "id",
             "required": true,
             "schema": {
               "type": "string"
             },
             "description": "The path of the asset"
+          },
+          {
+            "in": "query",
+            "name": "metadataOnly",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Whether to return metadata only and no content"
           }
         ],
         "responses": {
           "200": {
             "description": "Successful operation",
             "content": {
-              "image/png": {
+              "application/json": {
                 "schema": {
-                  "type": "string",
-                  "format": "binary"
+                  "$ref": "schemas/asset.json#/components/schemas/AssetGetResponse"
                 }
               }
             }
