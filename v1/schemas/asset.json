@@ -28,12 +28,7 @@
             "type": "string"
           },
           "contentType": {
-            "type": "string",
-            "enum": [
-              "image/jpeg",
-              "image/png",
-              "application/pdf"
-            ]
+            "$ref": "#/components/schemas/AssetContentType"
           },
           "data": {
             "type": "string",
@@ -89,12 +84,7 @@
             "type": "string"
           },
           "contentType": {
-            "type": "string",
-            "enum": [
-              "image/jpeg",
-              "image/png",
-              "application/pdf"
-            ]
+            "$ref": "#/components/schemas/AssetContentType"
           },
           "asset_path": {
             "type": "string"
@@ -107,6 +97,14 @@
         "required": [
           "asset",
           "asset_path"
+        ]
+      },
+      "AssetContentType": {
+        "type": "string",
+        "enum": [
+          "image/jpeg",
+          "image/png",
+          "application/pdf"
         ]
       }
     }
