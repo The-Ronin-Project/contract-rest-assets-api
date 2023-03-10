@@ -7,9 +7,9 @@
   },
   "components": {
     "schemas": {
-      "Asset": {
-        "title": "Asset",
-        "description": "An asset",
+      "PatientAsset": {
+        "title": "PatientAsset",
+        "description": "An asset for a patient",
         "type": "object",
         "properties": {
           "tenantId": {
@@ -19,7 +19,7 @@
             "type": "string"
           },
           "resourceType": {
-            "type": "string"
+            "$ref": "#/components/schemas/ResourceType"
           },
           "resourceId": {
             "type": "string"
@@ -28,7 +28,7 @@
             "type": "string"
           },
           "contentType": {
-            "$ref": "#/components/schemas/AssetContentType"
+            "$ref": "#/components/schemas/ContentType"
           },
           "data": {
             "type": "string",
@@ -37,13 +37,13 @@
         },
         "required": [
           "tenantId",
+          "patientId",
           "resourceType",
-          "resourceId",
           "resourceAttribute",
           "contentType"
         ]
       },
-      "AssetPostResponse": {
+      "PatientAssetPostResponse": {
         "title": "Asset Upload Response",
         "description": "An asset upload response",
         "type": "object",
@@ -51,16 +51,16 @@
           "asset": {
             "type": "string"
           },
-          "asset_url": {
+          "path": {
             "type": "string"
           }
         },
         "required": [
           "asset",
-          "asset_path"
+          "path"
         ]
       },
-      "AssetGetResponse": {
+      "PatientAssetGetResponse": {
         "title": "Asset Response",
         "description": "An asset response",
         "type": "object",
@@ -84,9 +84,9 @@
             "type": "string"
           },
           "contentType": {
-            "$ref": "#/components/schemas/AssetContentType"
+            "type": "string"
           },
-          "asset_path": {
+          "path": {
             "type": "string"
           },
           "data": {
@@ -96,15 +96,28 @@
         },
         "required": [
           "asset",
-          "asset_path"
+          "tenantId",
+          "patientId",
+          "resourceType",
+          "resourceAttribute",
+          "contentType",
+          "path"
         ]
       },
-      "AssetContentType": {
+      "ContentType": {
         "type": "string",
         "enum": [
           "image/jpeg",
           "image/png",
           "application/pdf"
+        ]
+      },
+      "ResourceType": {
+        "type": "string",
+        "enum": [
+          "DiagnosticReport",
+          "DocumentReference",
+          "Patient"
         ]
       }
     }
