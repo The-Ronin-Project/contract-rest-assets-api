@@ -6,34 +6,45 @@
     "contact": {
       "email": "carl@projectronin.com"
     },
-    "version": "0.1.0"
+    "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "/api/v1"
+      "url": "/api"
     }
   ],
   "tags": [
     {
-      "name": "asset",
-      "description": "Related to creating and retrieving assets"
+      "name": "Patient Assets",
+      "description": "Related to creating and retrieving assets that are related to patient's data."
     }
   ],
   "paths": {
-    "/assets": {
+    "/patients/{patient_id}/assets": {
       "post": {
-        "summary": "Upload an Asset",
-        "description": "Upload an Asset",
-        "operationId": "uploadAsset",
+        "summary": "Upload a Patient's Asset",
+        "description": "Uploads an asset related to a patient's data.",
+        "operationId": "uploadPatientAsset",
         "tags": [
-          "asset"
+          "Patient Assets"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patient_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Ronin UDP Id for the Patient"
+          }
         ],
         "requestBody": {
           "description": "Upload an Asset",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "schemas/asset.json#/components/schemas/Asset"
+                "$ref": "schemas/asset.json#/components/schemas/PatientAsset"
               }
             }
           },
@@ -45,7 +56,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "schemas/asset.json#/components/schemas/AssetPostResponse"
+                  "$ref": "schemas/asset.json#/components/schemas/PatientAssetPostResponse"
                 }
               }
             }
@@ -67,15 +78,24 @@
         ]
       }
     },
-    "/assets/{id}": {
+    "/patients/{patient_id}/assets/{id}": {
       "get": {
-        "summary": "Get Asset",
-        "description": "Get Asset",
-        "operationId": "getAsset",
+        "summary": "Get Patient Asset",
+        "description": "Gets an asset that is related to a patient's data in some way.",
+        "operationId": "getPatientAsset",
         "tags": [
-          "asset"
+          "Patient Assets"
         ],
         "parameters": [
+          {
+            "in": "path",
+            "name": "patient_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Ronin UDP Id for the Patient"
+          },
           {
             "in": "path",
             "name": "id",
@@ -101,7 +121,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "schemas/asset.json#/components/schemas/AssetGetResponse"
+                  "$ref": "schemas/asset.json#/components/schemas/PatientAssetGetResponse"
                 }
               }
             }
