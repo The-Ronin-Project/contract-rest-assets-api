@@ -12,10 +12,49 @@
         "description": "An asset for a patient",
         "type": "object",
         "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "md5": {
+            "type": "string"
+          },
+          "resourceType": {
+            "$ref": "#/components/schemas/ResourceType"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceAttribute": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "byte"
+          }
+        },
+        "required": [
+          "filename",
+          "md5",
+          "resourceType",
+          "resourceAttribute",
+          "data"
+        ]
+      },
+      "PatientAssetPostResponse": {
+        "title": "Asset Upload Response",
+        "description": "An asset upload response",
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string"
+          },
           "tenantId": {
             "type": "string"
           },
           "patientId": {
+            "type": "string"
+          },
+          "md5": {
             "type": "string"
           },
           "resourceType": {
@@ -28,37 +67,17 @@
             "type": "string"
           },
           "contentType": {
-            "$ref": "#/components/schemas/ContentType"
-          },
-          "data": {
-            "type": "string",
-            "format": "byte"
+            "type": "string"
           }
         },
         "required": [
+          "assetId",
           "tenantId",
           "patientId",
+          "md5",
           "resourceType",
           "resourceAttribute",
-          "contentType",
-          "data"
-        ]
-      },
-      "PatientAssetPostResponse": {
-        "title": "Asset Upload Response",
-        "description": "An asset upload response",
-        "type": "object",
-        "properties": {
-          "asset": {
-            "type": "string"
-          },
-          "path": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "asset",
-          "path"
+          "contentType"
         ]
       },
       "PatientAssetGetResponse": {
@@ -66,13 +85,16 @@
         "description": "An asset response",
         "type": "object",
         "properties": {
-          "asset": {
+          "assetId": {
             "type": "string"
           },
           "tenantId": {
             "type": "string"
           },
           "patientId": {
+            "type": "string"
+          },
+          "md5": {
             "type": "string"
           },
           "resourceType": {
@@ -87,30 +109,19 @@
           "contentType": {
             "type": "string"
           },
-          "path": {
-            "type": "string"
-          },
           "data": {
             "type": "string",
             "format": "byte"
           }
         },
         "required": [
-          "asset",
+          "assetId",
           "tenantId",
           "patientId",
           "resourceType",
           "resourceAttribute",
           "contentType",
-          "path"
-        ]
-      },
-      "ContentType": {
-        "type": "string",
-        "enum": [
-          "image/jpeg",
-          "image/png",
-          "application/pdf"
+          "md5"
         ]
       },
       "ResourceType": {
