@@ -6,7 +6,7 @@
     "contact": {
       "email": "carl@projectronin.com"
     },
-    "version": "1.0.3"
+    "version": "1.0.4"
   },
   "servers": [
     {
@@ -17,6 +17,10 @@
     {
       "name": "Patient Assets",
       "description": "Related to creating and retrieving assets that are related to patient's data."
+    },
+    {
+      "name": "Tenant Management",
+      "description": "Admin endpoint to tell Assets service when there is a new Tenant for which it will need to store files."
     }
   ],
   "paths": {
@@ -87,7 +91,7 @@
         ]
       }
     },
-    "/tenants/{tenant_id}/patients/{patient_id}/assets/{id}": {
+    "/tenants/{tenant_id}/patients/{patient_id}/assets/{asset_id}": {
       "get": {
         "summary": "Get Patient Asset",
         "description": "Gets an asset that is related to a patient's data in some way.",
@@ -116,7 +120,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "asset_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -125,12 +129,12 @@
           },
           {
             "in": "query",
-            "name": "metadataOnly",
+            "name": "withData",
             "required": false,
             "schema": {
               "type": "boolean"
             },
-            "description": "Whether to return metadata only and no content"
+            "description": "Whether to return the data with the metadata"
           }
         ],
         "responses": {
@@ -140,6 +144,53 @@
               "application/json": {
                 "schema": {
                   "$ref": "schemas/asset.json#/components/schemas/PatientAssetGetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "seki": []
+          }
+        ]
+      }
+    },
+    "/tenants/{tenant_id}": {
+      "post": {
+        "summary": "Create the tenant for asset service",
+        "description": "Creates the data for the tenant for Assets service to utilize.",
+        "operationId": "createAssetTenant",
+        "tags": [
+          "Tenant Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Ronin Tenant Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "schemas/tenant.json#/components/schemas/Tenant"
                 }
               }
             }
