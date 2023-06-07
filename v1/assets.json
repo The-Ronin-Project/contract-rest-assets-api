@@ -163,6 +163,59 @@
             "seki": []
           }
         ]
+      },
+      "delete": {
+        "summary": "Delete Patient Asset",
+        "description": "Deletes an asset",
+        "operationId": "deletePatientAsset",
+        "tags": [
+          "Patient Assets"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Ronin Tenant Id"
+          },
+          {
+            "in": "path",
+            "name": "patient_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Ronin UDP Id for the Patient"
+          },
+          {
+            "in": "path",
+            "name": "asset_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The path of the asset"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          }
+        },
+        "security": [
+          {
+            "seki": []
+          }
+        ]
       }
     },
     "/tenants/{tenant_id}": {
@@ -203,6 +256,41 @@
           },
           "405": {
             "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "seki": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete a tenant from the asset service",
+        "description": "Deletes the tenant and associated data in the Assets service.",
+        "operationId": "deleteAssetTenant",
+        "tags": [
+          "Tenant Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenant_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Ronin Tenant Id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Not Authorized"
           }
         },
         "security": [
