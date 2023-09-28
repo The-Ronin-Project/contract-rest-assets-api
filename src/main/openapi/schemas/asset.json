@@ -24,9 +24,6 @@
           "resourceId": {
             "type": "string"
           },
-          "resourceAttribute": {
-            "type": "string"
-          },
           "data": {
             "type": "string",
             "format": "byte"
@@ -35,8 +32,8 @@
         "required": [
           "filename",
           "md5",
+          "resourceId",
           "resourceType",
-          "resourceAttribute",
           "data"
         ]
       },
@@ -63,9 +60,6 @@
           "resourceId": {
             "type": "string"
           },
-          "resourceAttribute": {
-            "type": "string"
-          },
           "contentType": {
             "type": "string"
           }
@@ -75,8 +69,8 @@
           "tenantId",
           "patientId",
           "md5",
+          "resourceId",
           "resourceType",
-          "resourceAttribute",
           "contentType"
         ]
       },
@@ -103,9 +97,6 @@
           "resourceId": {
             "type": "string"
           },
-          "resourceAttribute": {
-            "type": "string"
-          },
           "contentType": {
             "type": "string"
           },
@@ -118,8 +109,8 @@
           "assetId",
           "tenantId",
           "patientId",
+          "resourceId",
           "resourceType",
-          "resourceAttribute",
           "contentType",
           "md5"
         ]
