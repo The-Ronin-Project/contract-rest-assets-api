@@ -19,9 +19,12 @@
             "type": "string"
           },
           "resourceType": {
-            "$ref": "#/components/schemas/ResourceType"
+            "type": "string"
           },
           "resourceId": {
+            "type": "string"
+          },
+          "resourceAttribute": {
             "type": "string"
           },
           "data": {
@@ -34,6 +37,7 @@
           "md5",
           "resourceId",
           "resourceType",
+          "resourceAttribute",
           "data"
         ]
       },
@@ -55,9 +59,12 @@
             "type": "string"
           },
           "resourceType": {
-            "$ref": "#/components/schemas/ResourceType"
+            "type": "string"
           },
           "resourceId": {
+            "type": "string"
+          },
+          "resourceAttribute": {
             "type": "string"
           },
           "contentType": {
@@ -71,6 +78,7 @@
           "md5",
           "resourceId",
           "resourceType",
+          "resourceAttribute",
           "contentType"
         ]
       },
@@ -97,6 +105,9 @@
           "resourceId": {
             "type": "string"
           },
+          "resourceAttribute": {
+            "type": "string"
+          },
           "contentType": {
             "type": "string"
           },
@@ -111,16 +122,9 @@
           "patientId",
           "resourceId",
           "resourceType",
+          "resourceAttribute",
           "contentType",
           "md5"
-        ]
-      },
-      "ResourceType": {
-        "type": "string",
-        "enum": [
-          "DiagnosticReport",
-          "DocumentReference",
-          "Patient"
         ]
       }
     }
